@@ -52,28 +52,29 @@ The maximum possible groupings of adjacent ones are already shown in the figure.
 
 **PROGRAM**
 ```
-module SRflipflop(j,k,clk,q,qbar);
-input j,k,clk;
-output reg q,qbar;
-initial 
+module SRflipflop(s,r,clk,q,qbar);
+input s,r,clk;
+output reg q;
+output reg qbar;
+initial
 begin
-q=1'b0;
-q=1'b1;
+q=0;
+qbar=1;
 end 
-
 always @(posedge clk)
-begin 
-q<=(j&~q)|(~k&q);
-qbar<=~q;
-end
+begin
+  q=s|(~r&q);
+  qbar=r|(~s&~q);
+end 
 endmodule
+
 ```
 **RTL LOGIC FOR FLIPFLOPS**
-![Screenshot (2)](https://github.com/user-attachments/assets/f9d68a27-e6a0-4cbe-a766-f8130e6bbca5)
-
+![Screenshot (41)](https://github.com/user-attachments/assets/f37e5867-2324-4a5f-98a2-f883fb856dac)
 
 **TIMING DIGRAMS FOR FLIP FLOPS**
-![Screenshot (3)](https://github.com/user-attachments/assets/7d7ec02a-3e79-4117-afd9-175316dd86b0)
+![Screenshot (42)](https://github.com/user-attachments/assets/d21188cc-6831-40bf-8c43-a0a34f8f0d7d)
+
 
 **RESULTS**
 Thus the given flip flop is  implemented and their operations are verified using Verilog programming.
